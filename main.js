@@ -12,7 +12,7 @@ function Machine(power) {
     }
 }
 
-function CoffeeMachine(power, capacity) {
+/*function CoffeeMachine(power, capacity) {
 
     // Machine.call(this);
 
@@ -96,18 +96,44 @@ coffeeMachine.enable();
 coffeeMachine.run();
 coffeeMachine.disable(); // остановит работу, ничего не выведет
 
-// coffeeMachine.stop();
+// coffeeMachine.stop();*/
 
 function Fridge(power) {
     Machine.apply(this, arguments);
 
-    var food;
-    
-    this.addFood = function () {
-        
+    var food = [];
+    var maxItems = this._power / 100;
+
+    this.addFood = function (item) {
+
+        if (!this._enabled) {
+            throw new Error("Ошибка! Холодильник выключен!");
+        }
+
+        if (food.length + arguments.length > maxItems) {
+            throw new Error("Ошибка! Слишком много еды!");
+        }
+
+        args = Array.prototype.slice.call(arguments)
+        food = food.concat(args);
+        console.log(food);
+    }
+
+    this.getFood = function () {
+        return food.slice();
     }
 
 }
 
-var fridge = new Fridge(200);
+var fridge = new Fridge(600);
 
+fridge.enable();
+fridge.addFood('бананы');
+fridge.addFood('масло, сметана, огурцы');
+fridge.addFood('молоко');
+
+var fridgeFood = fridge.getFood();
+alert( fridgeFood );
+
+fridgeFood.push("вилка", "ложка");
+alert( fridge.getFood() );
