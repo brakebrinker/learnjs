@@ -114,8 +114,13 @@ function Fridge(power) {
             throw new Error("Ошибка! Слишком много еды!");
         }
 
-        args = Array.prototype.slice.call(arguments)
-        food = food.concat(args);
+        // args = Array.prototype.slice.call(arguments)
+        // food = food.concat(args);
+
+        for (var i = 0; i < arguments.length; i++) {
+            food.push(arguments[i]); // добавить всё из arguments
+        }
+
         console.log(food);
     }
 
@@ -123,17 +128,27 @@ function Fridge(power) {
         return food.slice();
     }
 
+    this.removeFood = function (item) {
+        var idx = food.indexOf(item);
+        if (idx != -1) food.splice(idx, 1);
+    }
+
+    var parentDisable = this.disable;
+    this.disable = function () {
+        if (food.length) {
+            throw new Error("Ошибка! В холодильнике есть еда!");
+        }
+        parentDisable();
+    }
+
 }
 
 var fridge = new Fridge(600);
 
 fridge.enable();
-fridge.addFood('бананы');
+//fridge.addFood("кус-кус");
+fridge.disable(); // ошибка, в холодильнике есть еда
+
+/*fridge.addFood('бананы');
 fridge.addFood('масло, сметана, огурцы');
-fridge.addFood('молоко');
-
-var fridgeFood = fridge.getFood();
-alert( fridgeFood );
-
-fridgeFood.push("вилка", "ложка");
-alert( fridge.getFood() );
+fridge.addFood('молоко');*/
