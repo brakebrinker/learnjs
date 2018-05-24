@@ -1,4 +1,4 @@
-function Machine(power) {
+/*function Machine(power) {
     this._power = power;
 
     this._enabled = false;
@@ -10,7 +10,7 @@ function Machine(power) {
     this.disable = function () {
         return this._enabled = false;
     }
-}
+}*/
 
 /*function CoffeeMachine(power, capacity) {
 
@@ -98,7 +98,7 @@ coffeeMachine.disable(); // остановит работу, ничего не �
 
 // coffeeMachine.stop();*/
 
-function Fridge(power) {
+/*function Fridge(power) {
     Machine.apply(this, arguments);
 
     var food = [];
@@ -149,6 +149,72 @@ fridge.enable();
 //fridge.addFood("кус-кус");
 fridge.disable(); // ошибка, в холодильнике есть еда
 
-/*fridge.addFood('бананы');
+/!*fridge.addFood('бананы');
 fridge.addFood('масло, сметана, огурцы');
-fridge.addFood('молоко');*/
+fridge.addFood('молоко');*!/*/
+
+/*
+Function.prototype.defer = function(ms) {
+    var f = this;
+    return function() {
+        var args = arguments,
+            context = this;
+        setTimeout(function() {
+            f.apply(context, args);
+        }, ms);
+    }
+};
+
+function f(a, b) {
+    alert( a + b );
+}
+
+f.defer(1000)(1, 2);*/
+
+/*
+function CoffeeMachine(power) {
+    this._power = power;
+    this._waterAmount = 0;
+}
+// свойства и методы для всех объектов класса
+CoffeeMachine.prototype.WATER_HEAT_CAPACITY = 4200;
+
+CoffeeMachine.prototype._getTimeBoil = function() {
+    return this._waterAmount * this.WATER_HEAT_CAPACITY * 80 / this._power;
+};
+
+CoffeeMachine.prototype.run = function () {
+    setTimeout(function () {
+        alert('Кофе готов!');
+    }, this._getTimeBoil() );
+}
+
+CoffeeMachine.prototype.setWaterAmount = function (amount) {
+    this._waterAmount = amount;
+}
+
+var coffeeMachine = new CoffeeMachine(10000);
+coffeeMachine.setWaterAmount(50);
+coffeeMachine.run();*/
+
+function Hamster() {
+    this._food = []; // пустой "живот"
+}
+
+Hamster.prototype.getFood = function(something) {
+    return this._food;
+}
+
+Hamster.prototype.found = function(something) {
+    this._food.push(something);
+};
+
+// Создаём двух хомяков и кормим первого
+var speedy = new Hamster();
+var lazy = new Hamster();
+
+speedy.found("яблоко");
+speedy.found("орех");
+
+alert( speedy.getFood.length ); // 2
+alert( lazy.getFood.length ); // 2 (!??)
