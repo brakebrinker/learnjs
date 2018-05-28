@@ -197,7 +197,7 @@ var coffeeMachine = new CoffeeMachine(10000);
 coffeeMachine.setWaterAmount(50);
 coffeeMachine.run();*/
 
-function Hamster() {
+/*function Hamster() {
     this._food = []; // пустой "живот"
 }
 
@@ -217,4 +217,6 @@ speedy.found("яблоко");
 speedy.found("орех");
 
 alert( speedy.getFood.length ); // 2
-alert( lazy.getFood.length ); // 2 (!??)
+alert( lazy.getFood.length ); // 2 (!??)*/
+
+

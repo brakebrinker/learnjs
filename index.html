@@ -1,11 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <script src="main.js"></script>
-    <title>CoffeeMachine</title>
+    <title>Часики в консоли</title>
+    <meta charset="utf-8">
 </head>
+
 <body>
-    <h1>CoffeeMachine</h1>
+
+<!-- исходные часы, от них нужно унаследовать -->
+<!--<script src="clock.js"></script>
+<script src="extended-clock.js"></script>-->
+<script src="menu.js"></script>
+<script>
+/*    var clock = new Clock({
+        template: 'h:m:s'
+    });
+    clock.start();*/
+
+/*    var lowResolutionClock = new ExtendedClock({
+        template: 'h:m:s',
+        precision: 10000
+    });
+
+    lowResolutionClock.start();*/
+
+var AnimatingMenu = AnimatingMenu; // замените на ваш код для AnimatingMenu
+
+// использование..
+
+var menu = new AnimatingMenu();
+
+menu.showState(); // закрыто
+
+menu.open();
+menu.showState(); // анимация
+
+setTimeout(function() {
+    menu.showState(); // открыто
+
+    menu.close();
+    menu.showState(); /function showMenu(title = "Без заголовка", width = 100, height = 200) {
+    alert(title + ' ' + width + ' ' + height);
+}
+
+showMenu("Меню");/ закрыто (закрытие без анимации)
+}, 1000);
+</script>
+
 </body>
+
 </html>
