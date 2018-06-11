@@ -220,3 +220,41 @@ alert( speedy.getFood.length ); // 2
 alert( lazy.getFood.length ); // 2 (!??)*/
 
 
+/*
+function delay(ms) {
+    return new Promise((resolve, reject) => {
+            setTimeout(resolve, ms);
+    });
+}
+
+delay(1000)
+    .then(() => alert("Hello!"));*/
+
+'use strict';
+
+let urls = [
+    'user.json',
+    'guest.json'
+];
+
+httpGet('/page-not-exists')
+    .then(response => JSON.parse(response))
+.then(user => httpGet(`https://api.github.com/users/${user.name}`))
+.then(githubUser => {
+    githubUser = JSON.parse(githubUser);
+
+let img = new Image();
+img.src = githubUser.avatar_url;
+img.className = "promise-avatar-example";
+document.body.appendChild(img);
+
+return new Promise((resolve, reject) => {
+    setTimeout(() => {
+    img.remove();
+    resolve();
+}, 3000);
+});
+})
+.catch(error => {
+    alert(error); // Error: Not Found
+});
